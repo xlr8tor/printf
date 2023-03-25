@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 #define BUFFER_SIZE 1024
-#define UNUSED(x) (void) (x)
+#define UNUSED(x) ((void) (x))
 
 /**
  * struct fmt - user defined type fmt

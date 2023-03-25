@@ -11,6 +11,9 @@ char *buffer)
 		{'d', print_int},
 		{'b', print_binary},
 		{'u', print_unsigned},
+		{'c', print_char},
+		{'s', print_string},
+		{'%', print_percent},
 		{'\0', NULL}};
 
 	for (i = 0; fmt_list[i].op != '\0'; i++)

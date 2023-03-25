@@ -30,13 +30,11 @@ int print_string(va_list types, char buffer[])
 	if (str == NULL)
 	{
 		str = "(null)";
-	
 	}
 
 	while (str[length] != '\0')
 		length++;
 
-	
 	return (write(1, str, length));
 }
 

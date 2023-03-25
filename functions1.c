@@ -31,6 +31,7 @@ int print_binary(va_list args, char *buffer)
 		if (sum || i == 31)
 		{
 			char c = '0' + binary[i];
+
 			write(1, &c, 1);
 			count++;
 		}
@@ -59,6 +60,13 @@ int print_int(va_list args, char *buffer)
 	return (1);
 }
 
+/**
+ * print_unsigned - prints an integer
+ * @args: list of arguments
+ * @buffer: array of chars
+ *
+ * Return: length of string printed
+ */
 int print_unsigned(va_list args, char *buffer)
 {
 	int i = BUFFER_SIZE - 2;

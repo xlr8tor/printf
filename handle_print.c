@@ -7,7 +7,7 @@ char *buffer)
 	int i, length = -1, tmp_len = 0;
 
 	fmt_t fmt_list[] = {
-		{'i', print_int}, 
+		{'i', print_int},
 		{'d', print_int},
 		{'b', print_binary},
 		{'u', print_unsigned},

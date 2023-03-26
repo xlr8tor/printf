@@ -21,6 +21,7 @@ void print_buffer(char *buffer, int *buffer_index)
 int _printf(const char *format, ...)
 {
 	int i, buffer_index = 0, length = 0, printed = 0;
+	int flags, width, precision, size;
 	va_list args;
 	char buffer[BUFFER_SIZE];
 
@@ -40,8 +41,13 @@ int _printf(const char *format, ...)
 		else
 		{
 			print_buffer(buffer, &buffer_index);
+			flags = get_flags(format, &i);
+			width = get_width(format, &i, args);
+			precision = get_precision(format, &i, args);
+			size = get_size(format, &i);
 			++i;
-			printed = handle_print(format, &i, args, buffer);
+			printed = handle_print(format, &i, args, buffer, 
+					flags, width, precision, size);
 			if (printed == -1)
 				return (-1);
 			length += printed;

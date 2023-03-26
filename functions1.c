@@ -3,17 +3,25 @@
  * print_binary - prints binary equivalent of decimal number
  * @args: list of arguments
  * @buffer: array of chars
- *
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * @precision: Precision specification
+ * @size: Size specifier
  * Return: length of string printed
  */
 
-int print_binary(va_list args, char *buffer)
+int print_binary(va_list args, char *buffer,
+	int flags, int width, int precision, int size)
 {
 	unsigned int lmb, i, sum, count;
 	unsigned int number;
 	unsigned int binary[32];
 
 	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	number = va_arg(args, unsigned int);
 
@@ -44,15 +52,23 @@ int print_binary(va_list args, char *buffer)
  * print_int - prints an integer
  * @args: list of arguments
  * @buffer: array of chars
- *
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * @precision: Precision specification
+ * @size: Size specifier
  * Return: length of string printed
  */
-int print_int(va_list args, char *buffer)
+int print_int(va_list args, char *buffer,
+	int flags, int width, int precision, int size)
 {
 	int i = BUFFER_SIZE - 2;
 	long int number = va_arg(args, long int);
 
 	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	if (number == 0)
 		return (1);
@@ -64,14 +80,19 @@ int print_int(va_list args, char *buffer)
  * print_unsigned - prints an integer
  * @args: list of arguments
  * @buffer: array of chars
- *
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * @precision: Precision specification
+ * @size: Size specifier
  * Return: length of string printed
  */
-int print_unsigned(va_list args, char *buffer)
+int print_unsigned(va_list args, char *buffer,
+	int flags, int width, int precision, int size)
 {
 	int i = BUFFER_SIZE - 2;
-	int length;
 	unsigned long int number = va_arg(args, unsigned long int);
+
+	number = convert_size_unsgnd(num, size);
 
 	if (number == 0)
 		buffer[i--] = '0';
@@ -83,8 +104,8 @@ int print_unsigned(va_list args, char *buffer)
 		number /= 10;
 	}
 	i++;
-	length = BUFFER_SIZE - i - 1;
-	return (write(1, &buffer[i], length));
+
+	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
 
 }
 
@@ -92,16 +113,22 @@ int print_unsigned(va_list args, char *buffer)
  * print_octal = prints an integer in base 8
  * @args: list of arguments
  * @buffer: array of chars
- *
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * @precision: Precision specification
+ * @size: Size specifier
  * Return: length of string
  */
-int print_octal(va_list args, char *buffer)
+int print_octal(va_list args, char *buffer,
+	int flags, int width, int precision, int size)
 {
 	int i = BUFFER_SIZE - 2;
-	int length;
 	unsigned long int number = va_arg(args, unsigned long int);
+	unsigned long int init_num = number;
 
-	UNUSED(buffer);
+	UNUSED(width);
+
+	number = convert_size_unsgnd(number, size);
 
 	if (number == 0)
 		buffer[i--] = '0';
@@ -113,7 +140,9 @@ int print_octal(va_list args, char *buffer)
 		number /= 8;
 	}
 
+	if (flags & F_HASH && init_num != 0)
+		buffer[i--] = '0';
 	i++;
-	length = BUFFER_SIZE - i - 1;
-	return (write(1, &buffer[i], length));
+
+	return (write_unsgnd(0, i, buffer, flags, width, precision, size));;
 }

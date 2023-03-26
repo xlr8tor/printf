@@ -5,7 +5,7 @@ char *buffer, int flags, int width, int precision, int size)
 {
 	int i, length = -1, tmp_len = 0;
 	fmt_t fmt_list[] = {
-		{'i', print_int}, {'d', print_int},
+		{'i', print_int}, {'d', print_int}, {'o', print_octal},
 		{'b', print_binary}, {'u', print_unsigned},
 		{'c', print_char}, {'s', print_string},
 		{'%', print_percent}, {'r', print_reverse},

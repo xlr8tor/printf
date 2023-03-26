@@ -92,7 +92,7 @@ int print_unsigned(va_list args, char *buffer,
 	int i = BUFFER_SIZE - 2;
 	unsigned long int number = va_arg(args, unsigned long int);
 
-	number = convert_size_unsgnd(num, size);
+	number = convert_size_unsgnd(number, size);
 
 	if (number == 0)
 		buffer[i--] = '0';

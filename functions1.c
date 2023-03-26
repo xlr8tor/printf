@@ -87,3 +87,33 @@ int print_unsigned(va_list args, char *buffer)
 	return (write(1, &buffer[i], length));
 
 }
+
+/**
+ * print_octal = prints an integer in base 8
+ * @args: list of arguments
+ * @buffer: array of chars
+ *
+ * Return: length of string
+ */
+int print_octal(va_list args, char *buffer)
+{
+	int i = BUFFER_SIZE - 2;
+	int length;
+	unsigned long int number = va_arg(args, unsigned long int);
+
+	UNUSED(buffer);
+
+	if (number == 0)
+		buffer[i--] = '0';
+	buffer[BUFFER_SIZE - 1] = '\0';
+
+	while (number > 0)
+	{
+		buffer[i--] = (number % 8) + '0';
+		number /= 8;
+	}
+
+	i++;
+	length = BUFFER_SIZE - i - 1;
+	return (write(1, &buffer[i], length));
+}

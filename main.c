@@ -14,5 +14,7 @@ int main(void)
 	_printf("Unsigned:[%u]\n", ui);
 	_printf("Character:[%c]\n", 'H');
 	_printf("String:[%s]\n", "I am a string !");
+	_printf("String:[%R]\n", "I am a string !");
+	_printf("String:[%r]\n", "I am a string !");
 	return (0);
 }

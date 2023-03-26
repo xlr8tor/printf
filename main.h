@@ -42,4 +42,10 @@ int print_int(va_list args, char *buffer);
 int print_binary(va_list args, char *buffer);
 int print_unsigned(va_list args, char *buffer);
 
+/* PRINT STRING IN REVERSE */
+int print_reverse(va_list args, char *buffer);
+
+/* PRINT ROT13STRING */
+int print_rot13string(va_list args, char *buffer);
+
 #endif /* MAIN_H */

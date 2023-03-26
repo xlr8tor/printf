@@ -14,6 +14,8 @@ char *buffer)
 		{'c', print_char},
 		{'s', print_string},
 		{'%', print_percent},
+		{'r', print_reverse},
+		{'R', print_rot13string},
 		{'\0', NULL}};
 
 	for (i = 0; fmt_list[i].op != '\0'; i++)

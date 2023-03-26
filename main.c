@@ -2,10 +2,15 @@
 #include <limits.h>
 #include <stdio.h>
 
+/**
+  * main - entry point
+  * Return: 0
+  */
+
 int main(void)
 {
 	unsigned int ui;
-	
+
 	ui = (unsigned int)INT_MAX + 1024;
 
 	_printf("Hello world\n");

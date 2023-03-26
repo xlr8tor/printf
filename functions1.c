@@ -49,34 +49,6 @@ int print_binary(va_list args, char *buffer,
 }
 
 /**
- * print_int - prints an integer
- * @args: list of arguments
- * @buffer: array of chars
- * @flags:  Calculates active flags
- * @width: get width.
- * @precision: Precision specification
- * @size: Size specifier
- * Return: length of string printed
- */
-int print_int(va_list args, char *buffer,
-	int flags, int width, int precision, int size)
-{
-	int i = BUFFER_SIZE - 2;
-	long int number = va_arg(args, long int);
-
-	UNUSED(buffer);
-	UNUSED(flags);
-	UNUSED(width);
-	UNUSED(precision);
-	UNUSED(size);
-
-	if (number == 0)
-		return (1);
-	i++;
-	return (1);
-}
-
-/**
  * print_unsigned - prints an integer
  * @args: list of arguments
  * @buffer: array of chars
@@ -110,7 +82,7 @@ int print_unsigned(va_list args, char *buffer,
 }
 
 /**
- * print_octal = prints an integer in base 8
+ * print_octal - prints an integer in base 8
  * @args: list of arguments
  * @buffer: array of chars
  * @flags:  Calculates active flags
@@ -144,5 +116,5 @@ int print_octal(va_list args, char *buffer,
 		buffer[i--] = '0';
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flags, width, precision, size));;
+	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
 }

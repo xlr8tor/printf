@@ -9,8 +9,9 @@ char *buffer, int flags, int width, int precision, int size)
 		{'b', print_binary}, {'u', print_unsigned},
 		{'c', print_char}, {'s', print_string},
 		{'%', print_percent}, {'r', print_reverse},
-		{'R', print_rot13string},
-		{'\0', NULL}};
+		{'R', print_rot13string}, {'p', print_pointer},
+		{'S', print_non_printable}, {'x', print_hexadecimal},
+		{'X', print_hexa_upper}, {'\0', NULL}};
 
 	for (i = 0; fmt_list[i].op != '\0'; i++)
 		if (format[*buffer_index] == fmt_list[i].op)
@@ -28,7 +29,7 @@ char *buffer, int flags, int width, int precision, int size)
 		else if (width)
 		{
 			--(*buffer_index);
-			while (format[*buffer_index] != ' ' 
+			while (format[*buffer_index] != ' '
 					&& format[*buffer_index] != '%')
 				--(*buffer_index);
 			if (format[*buffer_index == ' '])

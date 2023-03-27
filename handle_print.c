@@ -32,7 +32,7 @@ char *buffer, int flags, int width, int precision, int size)
 			while (format[*buffer_index] != ' '
 					&& format[*buffer_index] != '%')
 				--(*buffer_index);
-			if (format[*buffer_index == ' '])
+			if (format[*buffer_index] == ' ')
 				--(*buffer_index);
 			return (1);
 		}
